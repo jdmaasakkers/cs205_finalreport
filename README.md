@@ -16,6 +16,8 @@ We implement a multi-class linear classifier (one hidden layer neutral network) 
 ### Serial implementation
 We first benchmark the serial implementation on Odyssey for different problem sizes. The code used for this is included in [Code_Serial.py](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Code/Code_Serial.py). As shown in the Figure below, we find that runtime scales linearly with the number of samples studied. The model reaches above 70% accuracy for the larger training sets. 
 
+(%% Add figure showing different parts of the code and indicate which parts can be parallelized: "try to find the treshold which makes the speedup saturate")
+
 ![Serial-Runtimes](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Sizes_Serial.png)
 
 ### OpenMP parallelization
@@ -24,17 +26,16 @@ OpenMP parallelization is implemented using Cython. The inner loops of the learn
 ![OpenMP-Speedups](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Speedup_OpenMP.png)
 
 ### OpenMP + MPI parallelization
-On top of the inner loop parallelization using OpenMP, we now implement MPI parallelization on the outer loop. 
+On top of the inner loop parallelization using OpenMP, we now implement MPI parallelization on the outer loop. This is implemented using the mpi4py package. We are currently working out some issues with the communication between the different nodes, benchmark results will be added shortly. The current associated Cython module is [train_ml_MPI.pyx](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Code/train_ml_MPI.pyx).
 
 ### Spark parallelization
 Spark allows a different method of parallelizing the learning algorithm. Using functional parallelism, Spark parallelizes using compositions of functions. We implement a Spark version of our code on the Amazon Web Services (AWS) EMR Spark cluster. We run our code with 1 master and 2 core nodes and validate that it gives the same results as the serial implementation. The resulting speedup compared to running the serial Odyssey code is shown in the figure below.
 
+(%% Add explanation for drop in speedup in Spark -> Will update Spark Benchmark)
+
 ![Spark-Speedups](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Speedup_Spark.png)
 
-We find speedup larger than 1x for all problem sizes studied. More work will be done on applying Spark to the loop over the Tikhonov regularization factors and benchmarking it for varying hardware setups on AWS. The Spark version of the code is [Code_Spark.py](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Code/Code_Spark.py). Python code used for all the plots is included in the code directory. 
+We find speedup larger than 1x for all problem sizes studied. More work will be done on applying Spark to the loop over the Tikhonov regularization factors and benchmarking it for varying hardware setups on AWS. The Spark version of the code is [Code_Spark.py](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Code/Code_Spark.py). Python code used for all the plots is included in the code directory.
 
-### Future work
-We will continue work along three different avenues:
-- Optimize the hybrid parallelization using OpenMP + MPI and do a more rigorous benchmark including running on 8 compute nodes on Odyssey.
-- Optimize the Spark parallelization for AWS (adding Spark to additional loops in the program), implement GPU acceleration, and benchmark for different setups. We will also add visuals illustrating the workflow. 
-- Build a framework where custom images can be imported into the learning algorithm. 
+### Conclusions
+(%% Add conclusions and potentially add suggestions for future work)
