@@ -3,7 +3,7 @@
 
 Image recognition is a hot topic in machine learning. It has a lot of applications including in tagging people in photos, augmented reality, improving image search, and self-driving vehicles that have to identify different objects on the road and respond based on their location and movement. In this project statistical learning theory in used in the OpenMP+MPI and Spark frameworks to classify images. Both model and data parallelization are explored as many examples of labeled images are critical to training an accurate model.
 
-(%% Include state-of-the-art image recognition)
+(%% Include state-of-the-art image recognition including references)
 
 ### Project Goals
 - Implement both serial, OpenMPI+MPI, and Spark regularized statistical learning algorithms. This will initially take the form of a linear classifier (e.g. 1-layer neural network) with L-2 loss.
@@ -28,9 +28,18 @@ OpenMP parallelization is implemented using Cython. The inner loops of the learn
 ### OpenMP + MPI parallelization
 On top of the inner loop parallelization using OpenMP, MPI parallelization is implemented on the outer loop. This is implemented using the mpi4py package. The current associated Cython module is [train_ml_MPI.pyx](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Code/train_ml_MPI.pyx).
 
+(%% Add workflow graph)
+(%% Describe Odyssey architecture used)
+(%% Evaluate: Amdahl Law + GUstafson Law (Strong + Weak scaling) + speedup/efficiency/iso-efficiency)
+(%% Add data parallel)
+(%% Add benchmark with Intel compiler)
+(%% Add benchmark with dynamic instead of static scheduling)
+
 ### Spark parallelization
 Spark allows a different method of parallelizing the learning algorithm. Using functional parallelism, Spark parallelizes using compositions of functions. A Spark version of the code is implemented on the Amazon Web Services (AWS) EMR Spark cluster. The code is run with 1 master and 2 core nodes and validate that it gives the same results as the serial implementation. The resulting speedup compared to running the serial Odyssey code is shown in the figure below.
 
+(%% Describe AWS architecture used)
+(%% Evaluate: Amdahl Law + GUstafson Law (Strong + Weak scaling) + speedup/efficiency/iso-efficiency)
 (%% Add explanation for drop in speedup in Spark -> Will update Spark Benchmark)
 
 ![Spark-Speedups](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Speedup_Spark.png)
