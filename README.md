@@ -5,11 +5,6 @@ Image recognition is a hot topic in machine learning. It has a lot of applicatio
 
 (%% Include state-of-the-art image recognition including references)
 
-### Project Goals
-- Implement both serial, OpenMPI+MPI, and Spark regularized statistical learning algorithms. This will initially take the form of a linear classifier (e.g. 1-layer neural network) with L-2 loss.
-- Analyze and benchmark data vs. model parallelization approaches. Weigh the benefits of computation cost vs. testing accuracy.
-- Build a framework where custom images can be imported.
-
 ### Learning algorithm
 A multi-class linear classifier (one hidden layer neutral network) is implemented to perform a training, validation, and testing split on the data. The current implementation uses the MNIST database [(LeCun et al. 1998)](http://yann.lecun.com/exdb/mnist/) that consists handwritten digits (0-9). The database includes a training set of 60,000 and a test set of 10,000 each consisting of 28 by 28 pixels. Each pixel has a value between 0 and 255 (white to black).
 
@@ -28,7 +23,7 @@ OpenMP parallelization is implemented using Cython. The inner loops of the learn
 ### OpenMP + MPI parallelization
 On top of the inner loop parallelization using OpenMP, MPI parallelization is implemented on the outer loop. This is implemented using the mpi4py package. The current associated Cython module is [train_ml_MPI.pyx](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Code/train_ml_MPI.pyx).
 
-(%% Add workflow graph)
+(%% Add workflow graph -> Analyze performance network, Tcomm/Tcomp, evaluate overhead)
 (%% Describe Odyssey architecture used)
 (%% Evaluate: Amdahl Law + GUstafson Law (Strong + Weak scaling) + speedup/efficiency/iso-efficiency)
 (%% Add data parallel)
