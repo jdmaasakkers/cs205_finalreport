@@ -1,5 +1,5 @@
-# Parallelized Image Recognition in Spark + MPI
-## CS205 - Interim progress report
+# Parallelized Image Recognition in OpenMP + MPI and Spark
+## CS205 - Final Report
 
 Image recognition is a hot topic in machine learning. It has a lot of applications including in self-driving vehicles that have to identify different objects on the road and respond based on their location and movement. Our project is to apply statistical learning theory in the OpenMP and Spark frameworks to classify images. We further aim to optimize the training of our learning algorithm by implementing MPI parallelization. We will explore both model and data parallelization as many examples of labeled images are critical to training an accurate model.
 
