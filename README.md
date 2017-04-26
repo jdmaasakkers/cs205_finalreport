@@ -3,17 +3,19 @@
 
 Image recognition is a hot topic in machine learning. It has a lot of applications including in tagging people in photos, augmented reality, improving image search, and self-driving vehicles that have to identify different objects on the road and respond based on their location and movement. In this project statistical learning theory in used in the OpenMP+MPI and Spark frameworks to classify images. Both model and data parallelization are explored as many examples of labeled images are critical to training an accurate model.
 
-(%% Include state-of-the-art image recognition including references ~ existing work on the problem)
+(%% Include state-of-the-art image recognition including references ~ existing work on the problem - Dan)
 
 ### Learning algorithm
 A multi-class linear classifier (one hidden layer neutral network) is implemented to perform a training, validation, and testing split on the data. The current implementation uses the MNIST database [(LeCun et al. 1998)](http://yann.lecun.com/exdb/mnist/) that consists handwritten digits (0-9). The database includes a training set of 60,000 and a test set of 10,000 each consisting of 28 by 28 pixels. Each pixel has a value between 0 and 255 (white to black).
 
-(%% Include description of pre-processing if we do own images)
+(%% Add Math - Dan)
+(%% Include description of pre-processing if we do own images - Bram)
 
-### Serial implementation
+### Computation graph
 First, the serial implementation is benchmarked on Odyssey for different problem sizes. The code used for this is included in [Code_Serial.py](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Code/Code_Serial.py). As shown in the Figure below, runtime scales linearly with the number of samples studied. The model reaches above 70% accuracy for the larger training sets. 
 
-(%% Add figure showing different parts of the code and indicate which parts can be parallelized: "try to find the treshold which makes the speedup saturate")
+(%% Run timing on the serial code - Bram)
+(%% Add figure showing different parts of the code and indicate which parts can be parallelized: "try to find the treshold which makes the speedup saturate" - Bram / Data Parallelism)
 
 ![Serial-Runtimes](https://github.com/jdmaasakkers/cs205_prelimreport/blob/master/Sizes_Serial.png)
 
@@ -26,9 +28,9 @@ On top of the inner loop parallelization using OpenMP, MPI parallelization is im
 
 (%% Add workflow graph /  computation graph -> Analyze performance network, Tcomm/Tcomp, evaluate overhead)
 (%% Describe Odyssey architecture used)
-(%% Benchmark including running on 8 compute nodes)
+(%% 2 Benchmarks [1 MPI = Lambda, 2 MPI = Data] including running on 8 compute nodes)
 (%% Evaluate: Amdahl Law + GUstafson Law (Strong + Weak scaling) + throughput/speedup/efficiency/iso-efficiency)
-(%% Add data parallel)
+
 (%% Add benchmark with Intel compiler)
 (%% Add benchmark with dynamic instead of static scheduling)
 
