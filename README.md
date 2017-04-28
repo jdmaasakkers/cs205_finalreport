@@ -31,9 +31,6 @@ On top of the inner loop parallelization using OpenMP, MPI parallelization is im
 (%% 2 Benchmarks [1 MPI = Lambda, 2 MPI = Data] including running on 8 compute nodes)
 (%% Evaluate: Amdahl Law + GUstafson Law (Strong + Weak scaling) + throughput/speedup/efficiency/iso-efficiency)
 
-(%% Add benchmark with Intel compiler)
-(%% Add benchmark with dynamic instead of static scheduling)
-
 ### Spark parallelization
 Spark allows a different method of parallelizing the learning algorithm. Using functional parallelism, Spark parallelizes using compositions of functions. A Spark version of the code is implemented on the Amazon Web Services (AWS) EMR Spark cluster. The code is run with 1 master and 2 core nodes and validate that it gives the same results as the serial implementation. The resulting speedup compared to running the serial Odyssey code is shown in the figure below.
 
